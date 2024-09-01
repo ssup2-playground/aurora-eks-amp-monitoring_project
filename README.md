@@ -14,3 +14,37 @@ aurora-eks-amp-monitoring is a prototyping project how to monitor Aurora using E
 * For high availability, ADOT collector uses 2 replicas.
 * Grafana collects and visualizes metrics from AMP.
 
+## Install
+
+* Run terraform
+
+```bash
+# Get terraform code
+$ git clone
+
+# Run terraform
+$ terraform init
+$ terraform apply -target="module.irsa_adot_collector"
+$ terraform apply -target="module.prometheus"
+$ terraform apply
+```
+
+* Set grafana security group
+  * Update `aurora-eks-amp-monitoring-grafana-sg` security group inbound rules from `127.0.0.1/32` to `your labtop IP/32`
+
+* Access grafana
+
+```bash
+# Set kubectl
+$ aws eks update-kubeconfig --name aurora-eks-amp-monitoring-eks
+
+# Update grafana service to LoadBalancer Type
+$ kubectl -n observability patch service grafana -p '{"spec": {"type": "LoadBalancer"}}'
+
+# Get grafana url
+$ echo http://$(kubectl -n observability get service grafana -o json | jq ".status.loadBalancer.ingress[0].hostname" -r)
+```
+
+* Login grafana
+  * username : admin
+  * password : `kubectl -n observability get secrets grafana -o jsonpath='{.data.admin-password}' | base64 --decode`
