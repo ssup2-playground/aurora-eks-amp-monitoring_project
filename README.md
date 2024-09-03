@@ -20,9 +20,10 @@ aurora-eks-amp-monitoring is a prototyping project how to monitor Aurora using E
 
 ```bash
 # Get terraform code
-$ git clone
+$ git clone https://github.com/ssup2-playground/aurora-eks-amp-monitoring_aws-terraform.git && rm ./aurora-eks-amp-monitoring_aws-terraform/terraform.tf
 
 # Run terraform
+$ cd aurora-eks-amp-monitoring_aws-terraform
 $ terraform init
 $ terraform apply -target="module.irsa_adot_collector"
 $ terraform apply -target="module.prometheus"
