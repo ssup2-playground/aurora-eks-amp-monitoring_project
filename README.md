@@ -12,7 +12,7 @@ aurora-eks-amp-monitoring is a prototyping project how to monitor Aurora using E
 * A PostgreSQL exporter accesses an Aurora PostgreSQL instnace to collect metrics.
 * ADOT collector collectes metrics from the exporter and stores them in AMP.
 * For high availability, ADOT collector uses 2 replicas.
-* Grafana collects and visualizes metrics from AMP.
+* Grafana collects and visualizes metrics from AMP and CloudWatch.
 
 ## Install
 
