@@ -49,3 +49,13 @@ $ echo http://$(kubectl -n observability get service grafana -o json | jq ".stat
 * Login grafana
   * username : admin
   * password : `kubectl -n observability get secrets grafana -o jsonpath='{.data.admin-password}' | base64 --decode`
+
+## Screenshots
+
+* grafana-aurora-mysql
+
+<img src="/images/grafana-aurora-mysql.png" width="800"/>
+
+* grafana-aurora-postgresql
+
+<img src="/images/grafana-aurora-postgresql.png" width="800"/>
