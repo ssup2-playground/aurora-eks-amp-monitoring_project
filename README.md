@@ -4,16 +4,6 @@ aurora-eks-amp-monitoring is a prototyping project how to monitor Aurora using E
 
 * [aws-terraform](https://github.com/ssup2-playground/aurora-eks-amp-monitoring_aws-terraform) : Terraform for Aurora Cluster, EKS Cluster and AMP
 
-## Architecture
-
-<img src="/images/architecture.png" width="700"/>
-
-* A MySQLd exporter accesses an Aurora MySQL instance to collect metrics.
-* A PostgreSQL exporter accesses an Aurora PostgreSQL instnace to collect metrics.
-* ADOT collector collectes metrics from the exporter and stores them in AMP.
-* For high availability, ADOT collector uses 2 replicas.
-* Grafana collects and visualizes metrics from AMP and CloudWatch.
-
 ## Install
 
 * Run terraform
@@ -49,6 +39,16 @@ $ echo http://$(kubectl -n observability get service grafana -o json | jq ".stat
 * Login grafana
   * username : admin
   * password : `kubectl -n observability get secrets grafana -o jsonpath='{.data.admin-password}' | base64 --decode`
+
+## Architecture
+
+<img src="/images/architecture.png" width="700"/>
+
+* A MySQLd exporter accesses an Aurora MySQL instance to collect metrics.
+* A PostgreSQL exporter accesses an Aurora PostgreSQL instnace to collect metrics.
+* ADOT collector collectes metrics from the exporter and stores them in AMP.
+* For high availability, ADOT collector uses 2 replicas.
+* Grafana collects and visualizes metrics from AMP and CloudWatch.
 
 ## Screenshots
 
